@@ -160,9 +160,9 @@ function calc() {
     document.getElementById("tax").innerText = tax.toFixed(2);
     document.getElementById("totalFees").innerText = totalFees.toFixed(2);
 
-    document.getElementById("final").innerText =
-        `💳 العميل يدفع: ${price.toFixed(2)} | 💰 يصلك: ${received.toFixed(2)}`;
-}
+document.getElementById("final").innerHTML =
+    `💳 العميل يدفع: <b>${price.toFixed(2)}</b> ريال<br>
+     💰 يصلك صافي: <b>${received.toFixed(2)}</b> ريال`;}
 </script>
 
 </body>
