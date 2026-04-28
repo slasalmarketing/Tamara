@@ -133,25 +133,33 @@ button {
 
 <script>
 function calc() {
-    let A = parseFloat(document.getElementById("amount").value);
+    let net = parseFloat(document.getElementById("amount").value);
 
-    if (!A || A <= 0) return;
+    if (!net || net <= 0) return;
 
     const percent = 0.07;
     const fixed = 1.5;
     const taxRate = 0.15;
 
-    let percentFee = percent * A;
+    // نحسب السعر اللي لازم العميل يدفعه
+    let A = net;
+
+    // المعادلة العكسية:
+    let price = (A + 1.15 * fixed) / (1 - 1.15 * percent);
+
+    // الرسوم
+    let percentFee = percent * price;
     let fee = percentFee + fixed;
     let tax = fee * taxRate;
     let totalFees = fee + tax;
-    let final = A + totalFees;
 
     document.getElementById("percent").innerText = percentFee.toFixed(2);
     document.getElementById("fixed").innerText = fixed.toFixed(2);
     document.getElementById("tax").innerText = tax.toFixed(2);
     document.getElementById("totalFees").innerText = totalFees.toFixed(2);
-    document.getElementById("final").innerText = final.toFixed(2);
+
+    // ده اللي العميل لازم يدفعه
+    document.getElementById("final").innerText = price.toFixed(2);
 }
 </script>
 
