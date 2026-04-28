@@ -141,17 +141,19 @@ function calc() {
     const fixed = 1.5;
     const taxRate = 0.15;
 
-    // المعادلة الصحيحة العكسية
+    // حساب السعر المطلوب من العميل
     let price =
         (net + 1.15 * fixed) /
-        (1 - (1.15 * percent));
+        (1 - 1.15 * percent);
 
+    // الرسوم
     let percentFee = percent * price;
     let fee = percentFee + fixed;
     let tax = fee * taxRate;
     let totalFees = fee + tax;
 
-    let received = price - totalFees; // ده الصافي الحقيقي
+    // الصافي الحقيقي اللي هيوصلك (مضمون)
+    let received = price - totalFees;
 
     document.getElementById("percent").innerText = percentFee.toFixed(2);
     document.getElementById("fixed").innerText = fixed.toFixed(2);
@@ -159,7 +161,7 @@ function calc() {
     document.getElementById("totalFees").innerText = totalFees.toFixed(2);
 
     document.getElementById("final").innerText =
-        `يدفع العميل: ${price.toFixed(2)} | يصلك: ${received.toFixed(2)}`;
+        `💳 العميل يدفع: ${price.toFixed(2)} | 💰 يصلك: ${received.toFixed(2)}`;
 }
 </script>
 
